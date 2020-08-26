@@ -3,11 +3,13 @@
 ## Nedir ? 
 
 .srt uzantılı dosyaların JSON'a çevrilmesi için geliştirilmiş basit bir çeviricidir. 
+## Nasıl İndirilir ? 
+
+Jar dosyasını indirin : https://raw.githubusercontent.com/firatkaya1/srt-to-JSON-/master/SRT.jar
+Ardından projenize ekleyin. 
 
 ## Nasıl Kullanılır ? 
 
-Jar dosyasını indirin : https://raw.githubusercontent.com/firatkaya1/srt-to-JSON-/master/SRT.jar
-Ardından projenize ekleyin.
 
 ```java
 
