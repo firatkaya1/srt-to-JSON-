@@ -6,7 +6,7 @@
 
 ## Nasıl Kullanılır ? 
 
-```
+```java
 
 List<Subtitle>  subtitle = new SubtitleService.Builder()
                 .path("/home/kaya/test.srt")                      // srt uzantılı dosyanın bulunduğu yer
