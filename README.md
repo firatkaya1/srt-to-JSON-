@@ -6,6 +6,9 @@
 
 ## Nasıl Kullanılır ? 
 
+Jar dosyasını indirin : https://raw.githubusercontent.com/firatkaya1/srt-to-JSON-/master/SRT.jar
+Ardından projenize ekleyin.
+
 ```java
 
 List<Subtitle>  subtitle = new SubtitleService.Builder()
