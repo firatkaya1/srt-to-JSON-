@@ -1,4 +1,4 @@
-package com.kayafirat;
+package com.kayafirat.model;
 
 public class Subtitle {
 
@@ -52,7 +52,17 @@ public class Subtitle {
         return this;
     }
 
-    public String toString(String _startTime,String _endTime,String _line,String _message) {
+    @Override
+    public String toString() {
+        return "Subtitle{" +
+                "startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", line='" + line + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
+
+    public String toString(String _startTime, String _endTime, String _line, String _message) {
         _startTime = _startTime == null ? "startTime" : _startTime;
         _endTime = _endTime == null ? "endTime" : _endTime;
         _line = _line == null ? "line" : _line;

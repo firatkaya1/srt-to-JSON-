@@ -1,10 +1,9 @@
 package com.kayafirat;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.kayafirat.model.Subtitle;
+import com.kayafirat.service.SubtitleService;
 
-import java.util.Scanner;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {

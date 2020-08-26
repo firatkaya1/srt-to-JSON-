@@ -1,16 +1,14 @@
-package com.kayafirat;
+package com.kayafirat.service;
+
+import com.kayafirat.exceptions.NotSupportFile;
+import com.kayafirat.model.Subtitle;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class SubtitleService {
-
-    private static final Logger LOGGER = Logger.getLogger( SubtitleService.class.getName() );
-
 
     private String filename;
     private boolean isJson;
@@ -92,6 +90,7 @@ public class SubtitleService {
 
 
     }
+
     public SubtitleService(Builder builder){
             this.path = builder.path;
             this.targetPath = builder.targetPath;
@@ -104,9 +103,9 @@ public class SubtitleService {
             this.jsonKeyLine = builder.jsonKeyLine;
     }
 
-
     public List<Subtitle> srtReader(){
         List<Subtitle> list = new ArrayList<>();
+        if (!isSrt(path)) throw new NotSupportFile(path);
         try {
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
@@ -132,7 +131,6 @@ public class SubtitleService {
 
             myReader.close();
             writeToFile(list);
-            toString(list);
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
@@ -211,10 +209,11 @@ public class SubtitleService {
         message = "";
     }
 
-    private void toString(List<Subtitle> list) {
-        for (int i=0;i<list.size();i++){
-            System.out.println(list.get(i).toString(this.jsonKeyStartTime,this.jsonKeyEndTime,this.jsonKeyLine,this.jsonKeyMessage));
-        }
-    }
+    private boolean isSrt(String  path) {
+        boolean success = false;
+        if (path.contains(".srt"))  success = true;
+        return success;
+     }
+
 
 }
