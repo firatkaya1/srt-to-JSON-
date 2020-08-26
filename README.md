@@ -1,10 +1,12 @@
 # srt-to-JSON-
 
-Nedir ? 
+## Nedir ? 
 
 .srt uzantılı dosyaların JSON'a çevrilmesi için geliştirilmiş basit bir çeviricidir. 
 
-Nasıl Kullanılır ? 
+## Nasıl Kullanılır ? 
+
+```
 
 List<Subtitle>  subtitle = new SubtitleService.Builder()
                 .path("/home/kaya/test.srt")                      // srt uzantılı dosyanın bulunduğu yer
@@ -20,3 +22,4 @@ List<Subtitle>  subtitle = new SubtitleService.Builder()
                 .jsonKeyofLine("satir")
                 .jsonKeyofMessage("mesaj")
                 .build();
+```
