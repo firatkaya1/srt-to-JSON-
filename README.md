@@ -24,7 +24,7 @@ List<Subtitle>  subtitle = new SubtitleService.Builder()
                 .build();
 ```
 
-##Bir Örnek 
+##### Bir Örnek 
 
 Öncelikle bu örneğe başlamadan önce bir srt dosyasının iç yapısına kısa bir şekilde göz atmanızı istiyorum. Zahmet etmeyin, hizmet ayağınıza geldi. Aşağıda gördüğünüz bir srt dosyasında alınmış bir kaç satırı  : 
 
@@ -78,7 +78,7 @@ Elde edeceğimiz sonuç şu şekilde olacaktır :
 
 ```
 Yukarıda görebildiğin gibi key-value tipinde değerler çıkmaktadır. Key değerlerini değiştirmek, daha anlaşılabilir ya da daha kısa bir key değeri kullanmak istiyorsan tek yapman gereken aşağıdaki gibi kullanman. 
-#Tavsiye 
+###### Tavsiye 
  key değerlerin ne kadar kısa olursa elde edeceğin json dosyasının boyutu daha az olacaktır. 
 
 ```
@@ -89,11 +89,11 @@ Yukarıda görebildiğin gibi key-value tipinde değerler çıkmaktadır. Key de
 
 ```
 
-# isCompressed(true) nedir ? 
+##### isCompressed(true) nedir ? 
 
 isCompressed değerine true vererek oluşturulucak dosyada var olan boşlukları engeller ve +5KB gibi bir yer kazandırır.
 
-# isJson(true) nedir ? 
+##### isJson(true) nedir ? 
 
 isJson değerine true vererek oluşturulucak yeni dosyanın bir json formatında oldugunu belirtirsiniz. Text formatında almak istiyorsanız false değeri yapmanız yeterli. 
 text formatında aşağıdaki gibi bir çıktı elde edersiniz : 
@@ -105,7 +105,7 @@ startTime:00:01:52,246,endTime: 00:01:55,115,line:6,message:- Bu taraf çok dağ
 startTime:00:01:55,149,endTime: 00:01:56,450,line:7,message:Öldürme atışı yaptım...
 startTime:00:01:56,483,endTime: 00:01:59,819,line:8,message:Evet, dağınık. Kafa, pençeler, deri?
 startTime:00:01:59,852,endTime: 00:02:01,988,line:9,message:- Aynı gibi. - Tamamdır.
-startTime:00:02:02,021,endTime: 00:02:03,524,line:10,message:- Şimdi. - Başka bir av daha mı?"
+startTime:00:02:02,021,endTime: 00:02:03,524,line:10,message:- Şimdi. - Başka bir av daha mı?
 
 
 ```
