@@ -55,24 +55,33 @@ public class Subtitle {
     @Override
     public String toString() {
         return "Subtitle{" +
-                "startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", line='" + line + '\'' +
-                ", message='" + message + '\'' +
+                "startTime='" + startTime.trim() + '\'' +
+                ", endTime='" + endTime.trim() + '\'' +
+                ", line='" + line.trim() + '\'' +
+                ", message='" + message.trim() + '\'' +
                 '}';
     }
 
-    public String toString(String _startTime, String _endTime, String _line, String _message) {
+    public String toString(String _startTime, String _endTime, String _line, String _message,boolean isJson) {
         _startTime = _startTime == null ? "startTime" : _startTime;
         _endTime = _endTime == null ? "endTime" : _endTime;
         _line = _line == null ? "line" : _line;
         _message = _message == null ? "message" : _message;
-        return "{" +
-                 "\""+_startTime+"\":\"" + startTime + '\"' +
-                ",\""+_endTime+"\":\"" + endTime + '\"' +
-                ",\""+_line+"\":\"" + line +'\"'+
-                ",\""+_message+ "\":\"" + message + '\"' +
-                '}';
+        if(isJson) {
+            return "{" +
+                    "\""+_startTime+"\":\"" + startTime.trim() + '\"' +
+                    ",\""+_endTime+"\":\"" + endTime.trim() + '\"' +
+                    ",\""+_line+"\":\"" + line.trim() +'\"'+
+                    ",\""+_message+ "\":\"" + message.trim() + '\"' +
+                    '}';
+        } else {
+            return "" +
+                    ""+_startTime+":" + startTime.trim()  +
+                    ", "+_endTime+":" + endTime.trim()  +
+                    ", "+_line+":" + line.trim() +
+                    ", "+_message+ ":" + message.trim();
+        }
+
     }
 
 

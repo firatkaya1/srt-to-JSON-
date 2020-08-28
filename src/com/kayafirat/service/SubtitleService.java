@@ -7,20 +7,22 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SubtitleService {
+    private static final Logger LOGGER = Logger.getLogger(SubtitleService.class.getName());
 
     private String filename;
     private boolean isJson;
     private boolean isCompressed;
     private String path;
     private String targetPath;
-
+    private boolean isLogging;
     private String jsonKeyStartTime;
     private String jsonKeyEndTime;
     private String jsonKeyLine;
     private String jsonKeyMessage;
-
     private String startTime = "";
     private String endTime = "";
     private String message = "";
@@ -101,12 +103,18 @@ public class SubtitleService {
             this.jsonKeyEndTime = builder.jsonKeyEndTime;
             this.jsonKeyMessage = builder.jsonKeyMessage;
             this.jsonKeyLine = builder.jsonKeyLine;
+            this.isLogging = builder.isLogging;
     }
 
     public List<Subtitle> srtReader(){
+
+
+        Log("Srt reader starting...");
+
         List<Subtitle> list = new ArrayList<>();
         if (!isSrt(path)) throw new NotSupportFile(path);
         try {
+            Log(path+" is opening.");
             File myObj = new File(path);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
@@ -128,8 +136,10 @@ public class SubtitleService {
                 }
 
             }
-
+            Log("File succesfully readed.");
             myReader.close();
+            Log("File closing... "+path);
+            Log("Starting to create .json file");
             writeToFile(list);
 
         } catch (FileNotFoundException e) {
@@ -143,23 +153,26 @@ public class SubtitleService {
     private void writeToFile(List<Subtitle> list){
 
         try {
-            File myWriter = new File(targetPath+"/"+filename+".json");
+            String extension = isJson ? ".json" : ".txt";
+            Log(targetPath+filename+".json created.");
+            File myWriter = new File(targetPath+"/"+filename+extension);
             FileOutputStream fos = new FileOutputStream(myWriter);
 
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            Log("Converting json and adding...");
             bw.write("[");
             for (int i=0;i<list.size();i++){
                 if(list.size()-1 != i) {
-                    bw.write(list.get(i).toString(this.jsonKeyStartTime,this.jsonKeyEndTime,this.jsonKeyLine,this.jsonKeyMessage)+",");
+                    bw.write(list.get(i).toString(this.jsonKeyStartTime,this.jsonKeyEndTime,this.jsonKeyLine,this.jsonKeyMessage,isJson)+",");
                     if (!this.isCompressed){
                         bw.newLine();
                     }
                 } else {
-                    bw.write(list.get(i).toString(this.jsonKeyStartTime,this.jsonKeyEndTime,this.jsonKeyLine,this.jsonKeyMessage));
+                    bw.write(list.get(i).toString(this.jsonKeyStartTime,this.jsonKeyEndTime,this.jsonKeyLine,this.jsonKeyMessage,isJson));
                 }
             }
             bw.write("]");
-
+            Log("Converting is over. File closed. Successfully finished.");
             bw.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -215,5 +228,9 @@ public class SubtitleService {
         return success;
      }
 
-
+    private void Log(String message) {
+        if (isLogging) {
+            LOGGER.log(Level.INFO,message);
+        }
+    }
 }
